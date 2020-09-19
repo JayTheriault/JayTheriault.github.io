@@ -21,12 +21,9 @@ var drawingApp = (function () {
 
 	var canvas,
 		context,
-		canvasWidth = 490,
+		canvasWidth = 500,
 		canvasHeight = 220,
-		colorPurple = "#cb3594",
-		colorGreen = "#659b41",
-		colorYellow = "#ffcf33",
-		colorBrown = "#986928",
+		colorBlack = "#000000",
 		outlineImage = new Image(),
 		crayonImage = new Image(),
 		markerImage = new Image(),
@@ -42,29 +39,20 @@ var drawingApp = (function () {
 		clickSize = [],
 		clickDrag = [],
 		paint = false,
-		curColor = colorPurple,
+		curColor = colorBlack,
 		curTool = "crayon",
 		curSize = "normal",
 		mediumStartX = 18,
 		mediumStartY = 19,
 		mediumImageWidth = 93,
 		mediumImageHeight = 46,
-		drawingAreaX = 111,
+		drawingAreaX = 0,
 		drawingAreaY = 11,
-		drawingAreaWidth = 267,
+		drawingAreaWidth = 500,
 		drawingAreaHeight = 200,
-		toolHotspotStartY = 23,
-		toolHotspotHeight = 38,
-		sizeHotspotStartY = 157,
-		sizeHotspotHeight = 36,
 		totalLoadResources = 8,
 		curLoadResNum = 0,
-		sizeHotspotWidthObject = {
-			huge: 39,
-			large: 25,
-			normal: 18,
-			small: 16
-		},
+
 
 		// Clears the canvas.
 		clearCanvas = function () {
@@ -83,43 +71,12 @@ var drawingApp = (function () {
 
 				drawCrayon = function (x, y, color, selected) {
 
-					context.beginPath();
-					context.moveTo(x + 41, y + 11);
-					context.lineTo(x + 41, y + 35);
-					context.lineTo(x + 29, y + 35);
-					context.lineTo(x + 29, y + 33);
-					context.lineTo(x + 11, y + 27);
-					context.lineTo(x + 11, y + 19);
-					context.lineTo(x + 29, y + 13);
-					context.lineTo(x + 29, y + 11);
-					context.lineTo(x + 41, y + 11);
-					context.closePath();
-					context.fillStyle = color;
-					context.fill();
 
-					if (selected) {
-						context.drawImage(crayonImage, x, y, mediumImageWidth, mediumImageHeight);
-					} else {
-						context.drawImage(crayonImage, 0, 0, 59, mediumImageHeight, x, y, 59, mediumImageHeight);
-					}
 				},
 
 				drawMarker = function (x, y, color, selected) {
 
-					context.beginPath();
-					context.moveTo(x + 10, y + 24);
-					context.lineTo(x + 10, y + 24);
-					context.lineTo(x + 22, y + 16);
-					context.lineTo(x + 22, y + 31);
-					context.closePath();
-					context.fillStyle = color;
-					context.fill();
 
-					if (selected) {
-						context.drawImage(markerImage, x, y, mediumImageWidth, mediumImageHeight);
-					} else {
-						context.drawImage(markerImage, 0, 0, 59, mediumImageHeight, x, y, 59, mediumImageHeight);
-					}
 				};
 
 			// Make sure required resources are loaded before redrawing
@@ -129,87 +86,6 @@ var drawingApp = (function () {
 
 			clearCanvas();
 
-			if (curTool === "crayon") {
-
-				// Draw the crayon tool background
-				context.drawImage(crayonBackgroundImage, 0, 0, canvasWidth, canvasHeight);
-
-				// Draw purple crayon
-				selected = (curColor === colorPurple);
-				locX = selected ? 18 : 52;
-				locY = 19;
-				drawCrayon(locX, locY, colorPurple, selected);
-
-				// Draw green crayon
-				selected = (curColor === colorGreen);
-				locX = selected ? 18 : 52;
-				locY += 46;
-				drawCrayon(locX, locY, colorGreen, selected);
-
-				// Draw yellow crayon
-				selected = (curColor === colorYellow);
-				locX = selected ? 18 : 52;
-				locY += 46;
-				drawCrayon(locX, locY, colorYellow, selected);
-
-				// Draw brown crayon
-				selected = (curColor === colorBrown);
-				locX = selected ? 18 : 52;
-				locY += 46;
-				drawCrayon(locX, locY, colorBrown, selected);
-
-			} else if (curTool === "marker") {
-
-				// Draw the marker tool background
-				context.drawImage(markerBackgroundImage, 0, 0, canvasWidth, canvasHeight);
-
-				// Draw purple marker
-				selected = (curColor === colorPurple);
-				locX = selected ? 18 : 52;
-				locY = 19;
-				drawMarker(locX, locY, colorPurple, selected);
-
-				// Draw green marker
-				selected = (curColor === colorGreen);
-				locX = selected ? 18 : 52;
-				locY += 46;
-				drawMarker(locX, locY, colorGreen, selected);
-
-				// Draw yellow marker
-				selected = (curColor === colorYellow);
-				locX = selected ? 18 : 52;
-				locY += 46;
-				drawMarker(locX, locY, colorYellow, selected);
-
-				// Draw brown marker
-				selected = (curColor === colorBrown);
-				locX = selected ? 18 : 52;
-				locY += 46;
-				drawMarker(locX, locY, colorBrown, selected);
-
-			} else if (curTool === "eraser") {
-
-				context.drawImage(eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
-				context.drawImage(eraserImage, 18, 19, mediumImageWidth, mediumImageHeight);
-			}
-
-			// Draw line on ruler to indicate size
-			switch (curSize) {
-			case "small":
-				locX = 467;
-				break;
-			case "normal":
-				locX = 450;
-				break;
-			case "large":
-				locX = 428;
-				break;
-			case "huge":
-				locX = 399;
-				break;
-			default:
-				break;
-			}
 			locY = 189;
 			context.beginPath();
 			context.rect(locX, locY, 2, 12);
@@ -226,23 +102,7 @@ var drawingApp = (function () {
 			// For each point drawn
 			for (i = 0; i < clickX.length; i += 1) {
 
-				// Set the drawing radius
-				switch (clickSize[i]) {
-				case "small":
-					radius = 2;
-					break;
-				case "normal":
-					radius = 5;
-					break;
-				case "large":
-					radius = 10;
-					break;
-				case "huge":
-					radius = 20;
-					break;
-				default:
-					break;
-				}
+				radius = 5
 
 				// Set the drawing path
 				context.beginPath();
@@ -255,14 +115,8 @@ var drawingApp = (function () {
 				}
 				context.lineTo(clickX[i], clickY[i]);
 				
-				// Set the drawing color
-				if (clickTool[i] === "eraser") {
-					//context.globalCompositeOperation = "destination-out"; // To erase instead of draw over with white
-					context.strokeStyle = 'white';
-				} else {
-					//context.globalCompositeOperation = "source-over";	// To erase instead of draw over with white
-					context.strokeStyle = clickColor[i];
-				}
+				context.strokeStyle = clickColor[i];
+
 				context.lineCap = "round";
 				context.lineJoin = "round";
 				context.lineWidth = radius;
@@ -272,11 +126,7 @@ var drawingApp = (function () {
 			//context.globalCompositeOperation = "source-over";// To erase instead of draw over with white
 			context.restore();
 
-			// Overlay a crayon texture (if the current tool is crayon)
-			if (curTool === "crayon") {
-				context.globalAlpha = 0.4; // No IE support
-				context.drawImage(crayonTextureImage, 0, 0, canvasWidth, canvasHeight);
-			}
+			
 			context.globalAlpha = 1; // No IE support
 
 			// Draw the outline image
@@ -306,45 +156,7 @@ var drawingApp = (function () {
 					mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft,
 mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
 
-				if (mouseX < drawingAreaX) { // Left of the drawing area
-					if (mouseX > mediumStartX) {
-						if (mouseY > mediumStartY && mouseY < mediumStartY + mediumImageHeight) {
-							curColor = colorPurple;
-						} else if (mouseY > mediumStartY + mediumImageHeight && mouseY < mediumStartY + mediumImageHeight * 2) {
-							curColor = colorGreen;
-						} else if (mouseY > mediumStartY + mediumImageHeight * 2 && mouseY < mediumStartY + mediumImageHeight * 3) {
-							curColor = colorYellow;
-						} else if (mouseY > mediumStartY + mediumImageHeight * 3 && mouseY < mediumStartY + mediumImageHeight * 4) {
-							curColor = colorBrown;
-						}
-					}
-				} else if (mouseX > drawingAreaX + drawingAreaWidth) { // Right of the drawing area
-
-					if (mouseY > toolHotspotStartY) {
-						if (mouseY > sizeHotspotStartY) {
-							sizeHotspotStartX = drawingAreaX + drawingAreaWidth;
-							if (mouseY < sizeHotspotStartY + sizeHotspotHeight && mouseX > sizeHotspotStartX) {
-								if (mouseX < sizeHotspotStartX + sizeHotspotWidthObject.huge) {
-									curSize = "huge";
-								} else if (mouseX < sizeHotspotStartX + sizeHotspotWidthObject.large + sizeHotspotWidthObject.huge) {
-									curSize = "large";
-								} else if (mouseX < sizeHotspotStartX + sizeHotspotWidthObject.normal + sizeHotspotWidthObject.large + sizeHotspotWidthObject.huge) {
-									curSize = "normal";
-								} else if (mouseX < sizeHotspotStartX + sizeHotspotWidthObject.small + sizeHotspotWidthObject.normal + sizeHotspotWidthObject.large + sizeHotspotWidthObject.huge) {
-									curSize = "small";
-								}
-							}
-						} else {
-							if (mouseY < toolHotspotStartY + toolHotspotHeight) {
-								curTool = "crayon";
-							} else if (mouseY < toolHotspotStartY + toolHotspotHeight * 2) {
-								curTool = "marker";
-							} else if (mouseY < toolHotspotStartY + toolHotspotHeight * 3) {
-								curTool = "eraser";
-							}
-						}
-					}
-				}
+				
 				paint = true;
 				addClick(mouseX, mouseY, false);
 				redraw();
