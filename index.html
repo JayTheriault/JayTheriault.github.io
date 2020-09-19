@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><title>Create a Drawing App with HTML5 Canvas and JavaScript { William Malone }</title>
+<link rel="stylesheet" href="css/style.css" media="screen, projection" />
+
+<script>
+
+(function () {
+	var onWindowLoad = function () {
+		
+		var loadScript = function (src, callback) {
+		
+			var element = document.createElement("script");
+				element.src = src;
+				element.async = true;
+				document.body.appendChild(element);
+				
+				if (callback) {
+				
+					element.onreadystatechange = function () {
+						if (this.readyState === "loaded" || this.readyState === "complete") { 
+							callback();
+						}
+					};
+					element.onload = callback;
+				}
+		},
+		
+		loadArticleScript = function () {
+		loadScript("js/javascript.js");
+		};
+		
+			loadScript("http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js", loadArticleScript);
+
+	};
+
+	if (window.addEventListener) {
+		window.addEventListener("load", onWindowLoad, false);
+	} else if (window.attachEvent) {
+		window.attachEvent("onload", onWindowLoad);
+	} else {
+		window.onload = onWindowLoad;
+	}
+}());			
+</script>
+</head>
+
+<body>
+    
+
+<a name="demo-simple"></a>
+<h2>Simple Drawing Canvas Demo</h2>
+                    
+<p>Give it a try:</p>
+<p class="demoToolList">Clear the canvas: <button id="clearCanvasSimple" type="button">Clear</button></p>
+<div class="image">
+<div id="canvasSimpleDiv"></div>
+</div>
+<div class="image">
+<div id="canvasDiv"></div>
+</div>
+                    
+
+
+
+
+</body>
+</html>
+
+
+
+                
