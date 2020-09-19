@@ -7,17 +7,39 @@
 <link href='http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf' rel='stylesheet'>
 
 <style>
+div{
+  border: 1px dotted blue;
+}
 #canvasDiv{
         border: 1px solid #000000;
-        width: 1000px;
-        text-align: center;
-
+        width: 500px;
+        float:right;
+        margin-right: 20px;
+        margin-left: -40px;
+        padding:0;
 
       }
 p.z {
     font-family: "Computer Modern";font-size: 30px;
 
   }
+
+#mainContainer {
+  height:auto;
+  margin:0;
+  padding:0;
+  width: 100%;
+  border: 1px solid red;
+  height: 1000px;
+}
+
+#textContainer{
+  width: 880px;
+  height: 1000px;
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+}
 </style>             
 <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet'>
 
@@ -79,10 +101,19 @@ footer
     <hr/>
 	<hr/>
 <body style="background-color:#FFFFFF;">
-   <p class="demoToolList">Clear the canvas: <button id="clearCanvas" type="button">Clear</button></p>
+  <div id="mainContainer">
+    <div id="textContainer"></div>
     <div id="canvasDiv"></div>
-    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
-    <script type="text/javascript" src="html5-canvas-drawing-app.js"></script>
+    <div id="canvasDiv"></div>
+  </div>
+    <p class="demoToolList">Clear the canvas: <button id="clearCanvas" type="button">Clear</button></p>
+
+
+
+
+
+
+    <script type="text/javascript" src="javascript.js"></script>
     <script type="text/javascript">
     	 drawingApp.init();
 	</script>
