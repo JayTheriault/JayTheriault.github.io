@@ -147,6 +147,8 @@ var drawingApp = (function () {
 			clickDrag.push(dragging);
 		},
 
+
+
 		// Add mouse and touch event listeners to the canvas
 		createUserEvents = function () {
 
@@ -195,6 +197,19 @@ mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetT
 			canvas.addEventListener("touchmove", drag, false);
 			canvas.addEventListener("touchend", release, false);
 			canvas.addEventListener("touchcancel", cancel, false);
+
+			// Get the button, and when the user clicks on it, execute myFunction
+			document.getElementById("clearCanvas").onclick = function() {myFunction()};
+
+			/* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+			function myFunction() {
+				clearCanvas();
+				clickX = new Array();
+				clickY = new Array();
+				clickDrag = new Array();
+				clickColor = new Array();
+				redraw();
+			}
 		},
 
 		// Calls the redraw function after all neccessary resources are loaded.
@@ -248,6 +263,9 @@ mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetT
 			outlineImage.onload = resourceLoaded;
 			outlineImage.src = "images/watermelon-duck-outline.png";
 		};
+
+/** simple canvas --------------------------------------------------*/		
+
 
 	return {
 		init: init
