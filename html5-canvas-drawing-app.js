@@ -99,6 +99,9 @@ var drawingApp = (function () {
 			context.rect(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 			context.clip();
 
+			// Draw the outline image
+			context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+			
 			// For each point drawn
 			for (i = 0; i < clickX.length; i += 1) {
 
@@ -129,8 +132,7 @@ var drawingApp = (function () {
 			
 			context.globalAlpha = 1; // No IE support
 
-			// Draw the outline image
-			context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+			
 		},
 
 		// Adds a point to the drawing array.
@@ -261,7 +263,7 @@ mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetT
 			crayonTextureImage.src = "images/crayon-texture.png";
 
 			outlineImage.onload = resourceLoaded;
-			outlineImage.src = "images/1.1.JPG";
+			outlineImage.src = "images/fma.png";
 		};
 
 /** simple canvas --------------------------------------------------*/		
