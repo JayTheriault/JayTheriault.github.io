@@ -266,8 +266,6 @@ mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetT
 			outlineImage.src = "images/fma.png";
 		};
 
-/** simple canvas --------------------------------------------------*/		
-
 
 	return {
 		init: init
