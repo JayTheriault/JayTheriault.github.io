@@ -4,30 +4,73 @@
     <meta charset="UTF-8">
     <title>Drawing Pad</title>
 
-
 <link href='http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf' rel='stylesheet'>
 
 <style>
-
+div{
+}
 #canvasDiv{
         border: 1px solid #000000;
         width: 500px;
-        float:left;
-        margin-right: 50px;
-        margin-left: 50px;
+        float:right;
+        margin-right: 20px;
+        margin-left: -40px;
         padding:0;
+        margin-bottom: 10px;
 
       }
-p.z {
-    font-family: "Computer Modern";font-size: 30px;
 
-  }
+button{
+  margin:0px;
+}
+
+.button {
+  border: none;
+  background-color: #e7e7e7; color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  border-radius: 8px;
+  border: 1.5px solid #111111;
+}
+
+.button:hover {
+  background-color: #00000;
+  color: white;
+}
+
+#nextContainer{
+  margin:auto;
+  height: auto;
+  width: 250px;
+  text-align: center;
+}
+
+#mainContainer {
+  height:auto;
+  margin:0;
+  padding:0;
+  width: 100%;
+  height: 500px;
+}
+
+#textContainer{
+  width: 880px;
+  height: auto;
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+}
 </style>             
 <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet'>
+
 <style>
-
-
-
+div {
+  margin: 100px;
+}
 p.small {
   line-height: 0.2;
 }
@@ -46,16 +89,21 @@ a.c {
     font-family: 'Arvo';font-size: 22px;
 }
 
+a.z{
+    font-family: "Computer Modern";font-size: 24px;
+}
+
+p.z {
+    font-family: "Computer Modern";font-size: 24px;
+
+  }
 
 p.c {
     font-family: 'Arvo';font-size: 22px;
 }
-p.f {
-    font-family: 'Arvo';font-size: 60px;
-}
 
 li.c {
-    font-family: 'Arvo';font-size: 16px;
+    font-family: 'Arvo';font-size: 14px;
 }
 
 header
@@ -75,48 +123,45 @@ footer
 
   
 	<header>
-<img src="drawing.jpg" width="200" alt="image">
-		<b><p style="color:white" class="f">Drawing Pad</p></b>
-
-              <link rel="stylesheet" href="style.css">
+<img width="200" alt="image">
+    <a href="index.html" class="z">1</a>
+	<a href="2.html" class="z">2</a>
+		<a href="3.html" class="z">3</a>
+<link rel="stylesheet" href="style.css">
 
 	</header>
     <hr/>
 	<hr/>
 <body style="background-color:#FFFFFF;">
-     </div>
-
+  <div id="mainContainer">
+    <div id="textContainer">
+      <h1>
+        Euler's Identity
+      </h1>
+      <p class="z">
+        In mathematics, Euler's identity[n 1] (also known as Euler's equation) is the equality e^{i*π} + 1 = 0, where e is Euler's number, the base of natural logarithms, i is the imaginary unit, which by definition satisfies i^2 = −1, and π is pi, the ratio of the circumference of a circle to its diameter.
+      </p><p class="z">
+        Euler's identity is named after the Swiss mathematician Leonhard Euler. It is considered to be an exemplar of mathematical beauty as it shows a profound connection between the most fundamental numbers in mathematics.
+      </p>
+    </div>
     <div id="canvasDiv"></div>
-     </div>
+    <p class="demoToolList" style="text-align: center;">Clear the canvas: <button id="clearCanvas" type="button">Clear</button></p>
+    <div id="nextContainer"><button class="button" onclick="document.location='2.html'">Back</button>   <button class="button" disabled>Next</button></div>
+    
+  </div>
+  
 
-    <p class="demoToolList">Clear the canvas: <button id="clearCanvas" type="button">Clear</button></p>
-
-
-
-
-
-
-    <script type="text/javascript" src="javascript.js"></script>
-
-    <script type="text/javascript">
+  <script type="text/javascript" src="javascript3.js"></script>
+  <script type="text/javascript">
     	 drawingApp.init();
 	</script>
-<div>
+  
 
-
-<form action="https://jaytheriault.github.io/index.html">
-    <input type="submit" value="Start Over" />
-</form>
-  </a>
-
-
-        <br/><br/><br/><br/><br/><br/>
-</div>
-<br/><br/><br/><br/><br/><br/>
-</body>
-<br/><br/><br/><br/><br/><br/>
-             <hr/><hr/>
 
    <footer>
-	   <br/><br/><br/><br/><br/><br/>
-</footer>
+<p style="color:#00000B;font-size:20px" class="z">Footer</p>
+<p class="z" style="font-size:14px">text</p>
+<br/><br/><br/><br/>
+	</footer>
+  </body>
+</html>
